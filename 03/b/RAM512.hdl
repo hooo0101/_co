@@ -16,4 +16,7 @@ CHIP RAM512 {
 
     PARTS:
     // Put your code here:
+    RAM256(in=in, load=load, address=address[0..7], out=out0);
+    RAM256(in=in, load=load, address=address[0..7], out=out1);
+    Mux16(a=out0, b=out1, sel=address[8], out=out);
 }

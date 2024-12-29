@@ -16,4 +16,16 @@ CHIP RAM8 {
 
     PARTS:
     // Put your code here:
+    Bit(in=in, load=load & (address == 0), out=out0);
+    Bit(in=in, load=load & (address == 1), out=out1);
+    Bit(in=in, load=load & (address == 2), out=out2);
+    Bit(in=in, load=load & (address == 3), out=out3);
+    Bit(in=in, load=load & (address == 4), out=out4);
+    Bit(in=in, load=load & (address == 5), out=out5);
+    Bit(in=in, load=load & (address == 6), out=out6);
+    Bit(in=in, load=load & (address == 7), out=out7);
+    Mux(a=out0, b=out1, sel=address[0], out=mux0);
+    Mux(a=mux0, b=out2, sel=address[1], out=mux1);
+    Mux(a=mux1, b=out3, sel=address[2], out=out);
+}
 }

@@ -17,4 +17,9 @@ CHIP PC {
 
     PARTS:
     // Put your code here:
+    Not(in=reset, out=notReset);  // notReset = 0 if reset is 1, else 1
+    Mux(a=in, b=out, sel=load, out=loadOut);  // Mux for load control
+    Inc16(in=out, out=incOut);  // incOut = out + 1
+    Mux(a=loadOut, b=incOut, sel=inc, out=nextOut);  // Mux for increment control
+    Mux(a=nextOut, b=0, sel=notReset, out=out);  // Apply reset if needed, else use nextOut
 }
